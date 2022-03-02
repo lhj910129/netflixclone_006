@@ -1,8 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:netflixclone_006/screen/home_screen.dart';
 import 'package:netflixclone_006/widget/bottom_bat.dart';
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
 
-void main(){
   runApp(App());
 }
 
