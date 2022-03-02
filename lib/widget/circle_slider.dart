@@ -47,8 +47,8 @@ List<Widget> makeCircleImages(BuildContext context, List<Movie>? movies) {
         child: Align(
           alignment: Alignment.centerLeft,
           child: CircleAvatar(
-            backgroundImage: AssetImage(
-                'images/' + (movies == null ? '' : movies[i].poster)
+            backgroundImage: NetworkImage(
+                (movies == null ? '' : movies[i].poster)
             ),
             radius: 48,
           ),

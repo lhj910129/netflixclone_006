@@ -36,7 +36,7 @@ class _State extends State<DetailScreen> {
                     decoration: BoxDecoration(
                         image: DecorationImage(
                             fit: BoxFit.cover,
-                            image: AssetImage('images/' + poster))),
+                            image: NetworkImage(poster))),
                     child: ClipRect(
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -48,8 +48,8 @@ class _State extends State<DetailScreen> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.fromLTRB(0, 45, 0, 10),
-                                  child: Image.asset(
-                                      'images/' + widget.movie!.poster),
+                                  child: Image.network(
+                                      widget.movie!.poster),
                                   height: 300,
                                 ),
                                 Container(
