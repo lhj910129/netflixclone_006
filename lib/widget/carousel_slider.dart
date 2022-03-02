@@ -60,11 +60,25 @@ class _CaroueselImagesState extends State<CarouselImage> {
                     likes?[_currenetPage] == true
                         ? IconButton(
                             icon: Icon(Icons.check),
-                            onPressed: () {},
+                            onPressed: () { //찜했을때
+                              setState(() {
+                                likes![_currenetPage] = false;
+                                movies![_currenetPage]
+                                    .reference!
+                                    .update({'like': false});
+                              });
+                            },
                           )
                         : IconButton(
                             icon: Icon(Icons.add),
-                            onPressed: () {},
+                            onPressed: () { //찜 안했을때
+                              setState(() {
+                                likes![_currenetPage] = true;
+                                movies![_currenetPage]
+                                    .reference!
+                                    .update({'like': true});
+                              });
+                            },
                           ),
                     Text(
                       '내가 찜한 콘텐츠',
@@ -105,9 +119,9 @@ class _CaroueselImagesState extends State<CarouselImage> {
                         Navigator.of(context).push(MaterialPageRoute<Null>(
                             fullscreenDialog: true,
                             builder: (BuildContext context) {
-                              print(movies?[_currenetPage].toString());
-                              print(movies?[_currenetPage].runtimeType);
-                                return DetailScreen(movie: movies?[_currenetPage]);//    movies?[_currenetPage] as List<Movie>?);
+                              return DetailScreen(
+                                  movie: movies![
+                                      _currenetPage]); //    movies?[_currenetPage] as List<Movie>?);
                             }));
                       },
                     ),

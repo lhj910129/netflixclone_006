@@ -17,9 +17,9 @@ class _State extends State<DetailScreen> {
   void initState() {
     super.initState();
     // like = widget.movie?.map((e) => e.like) as bool;
-    like = widget.movie!.like;
-    poster = widget.movie!.poster;
-    title = widget.movie!.title;
+    bool like = widget.movie!.like;
+    String poster = widget.movie!.poster;
+    String title = widget.movie!.title;
   }
 
   @override
@@ -35,8 +35,7 @@ class _State extends State<DetailScreen> {
                     width: double.maxFinite,
                     decoration: BoxDecoration(
                         image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: NetworkImage(poster))),
+                            fit: BoxFit.cover, image: NetworkImage(poster))),
                     child: ClipRect(
                       child: BackdropFilter(
                         filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
@@ -48,8 +47,7 @@ class _State extends State<DetailScreen> {
                               children: [
                                 Container(
                                   padding: EdgeInsets.fromLTRB(0, 45, 0, 10),
-                                  child: Image.network(
-                                      widget.movie!.poster),
+                                  child: Image.network(widget.movie!.poster),
                                   height: 300,
                                 ),
                                 Container(
@@ -120,10 +118,17 @@ class _State extends State<DetailScreen> {
                     Container(
                       padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+                          setState(() {
+                            like = !like;
+                            widget.movie!.reference!.update({'like': like});
+                          });
+                        },
                         child: Column(
                           children: [
-                            like ? Icon(Icons.check) : Icon(Icons.add),
+                            widget.movie!.like
+                                ? Icon(Icons.check)
+                                : Icon(Icons.add),
                             Padding(
                               padding: EdgeInsets.all(5),
                             ),
